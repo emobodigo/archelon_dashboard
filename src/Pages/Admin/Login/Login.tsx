@@ -8,10 +8,10 @@ const Login: React.FC = () => {
     password: "",
   });
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>): void => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setInput((prev) => ({
       ...prev,
-      [e.currentTarget.name]: e.currentTarget.value,
+      [e.target.name]: e.target.value,
     }));
   };
 
@@ -27,7 +27,7 @@ const Login: React.FC = () => {
         <div className="ae-login-form">
           <img src={logo} alt="logo"></img>
           <div className="ae-grid-label prime uppercase">Archelon</div>
-          <div className="gs-grid-label sub uppercase">Management System</div>
+          <div className="ae-grid-label sub uppercase">Management System</div>
           <input
             type="text"
             onChange={handleChange}
@@ -35,6 +35,7 @@ const Login: React.FC = () => {
             name="username"
             placeholder="Username"
             autoComplete="off"
+            value={input.username}
           />
           <input
             type="password"
@@ -43,6 +44,7 @@ const Login: React.FC = () => {
             name="password"
             placeholder="Password"
             autoComplete="off"
+            value={input.password}
           />
           <div className="ae-login-button" onClick={handleLogin}>
             Log in
