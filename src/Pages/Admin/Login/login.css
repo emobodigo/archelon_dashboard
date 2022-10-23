@@ -1,0 +1,46 @@
+.ae-login-form {
+    text-align: center;
+    max-width: 500px;
+    margin: 50px auto;
+    background-color: var(--color-card);
+    border: solid 2px var(--color-primary);
+    padding: 25px;
+    border-radius: var(--size-card-radius);
+}
+
+.ae-login-form img {
+    width: 80%;
+    max-width: 175px;
+}
+
+.ae-login-button{
+    font-size: 1.8rem;
+    font-family: ae-lite;
+    color: var(--color-text);
+    background-color: var(--color-primary);
+    border: solid 1px var(--color-primary);
+    border-radius: var(--size-card-radius);
+    max-width: 200px;
+    padding: var(--size-button-padding);
+    margin: 10px auto;
+    cursor: pointer;
+    text-decoration: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.ae-login-button:hover{
+    background-color: var(--color-primary-hover);
+    text-decoration: none;
+}
+.ae-login-button:visited, .ae-login-button:active, .ae-login-button:focus{
+    text-decoration: none;
+    color: var(--color-text);
+}
+.ae-text-input.login{
+    max-width: 300px;
+    margin: 10px 0;
+    border: solid 1px var(--color-primary);
+    background-color: var(--color-input-alt);
+}

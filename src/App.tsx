@@ -4,13 +4,13 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import Layout from "./Pages/Admin/Layout/Layout";
-import Login from "./Pages/Admin/Login";
+import Login from "./Pages/Admin/Login/Login";
 import ErrorPage from "./Pages/ErrorPage";
 import PublicHome from "./Pages/Public/PublicHome";
 import Dashboard from "./Pages/Admin/Dashboard/Dashboard";
 
 const App = () => {
-  const currentUser = true;
+  const currentUser = false;
 
   const ProtectedRoute = ({ children }: any) => {
     if (!currentUser) {
@@ -18,6 +18,7 @@ const App = () => {
     }
     return children;
   };
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -43,6 +44,7 @@ const App = () => {
       ],
     },
   ]);
+
   return <RouterProvider router={router} />;
 };
 
