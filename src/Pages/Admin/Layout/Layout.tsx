@@ -1,8 +1,8 @@
 import React from "react";
-import PrimarySearchAppBar from "../../../Components/AppBar/AppBar";
+import Sidebar from "../../../Components/Sidebar/Sidebar";
 
 const Layout: React.FC = () => {
-  return <PrimarySearchAppBar />;
+  return <Sidebar />;
 };
 
 export default Layout;

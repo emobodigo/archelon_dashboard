@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./login.css";
 import logo from "../../../assets/images/gs-logo-half.png";
+import CustomInput from "../../../Components/CustomInput/CustomInput";
+import { Link } from "react-router-dom";
 
 const Login: React.FC = () => {
   const [input, setInput] = useState({
@@ -28,27 +30,26 @@ const Login: React.FC = () => {
           <img src={logo} alt="logo"></img>
           <div className="ae-grid-label prime uppercase">Archelon</div>
           <div className="ae-grid-label sub uppercase">Management System</div>
-          <input
-            type="text"
-            onChange={handleChange}
-            className="ae-text-input login"
+          <CustomInput
+            className="login"
             name="username"
+            onchange={handleChange}
             placeholder="Username"
-            autoComplete="off"
             value={input.username}
           />
-          <input
-            type="password"
-            onChange={handleChange}
-            className="ae-text-input login"
+          <CustomInput
+            className="login"
             name="password"
+            onchange={handleChange}
             placeholder="Password"
-            autoComplete="off"
             value={input.password}
+            type="password"
           />
-          <div className="ae-login-button" onClick={handleLogin}>
-            Log in
-          </div>
+          <Link to={"/app"}>
+            <div className="ae-login-button" onClick={handleLogin}>
+              Log in
+            </div>
+          </Link>
         </div>
       </div>
     </div>

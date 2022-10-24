@@ -8,9 +8,11 @@ import Login from "./Pages/Admin/Login/Login";
 import ErrorPage from "./Pages/ErrorPage";
 import PublicHome from "./Pages/Public/PublicHome";
 import Dashboard from "./Pages/Admin/Dashboard/Dashboard";
+import Settings from "./Pages/Admin/Settings/Settings";
+import Administrator from "./Pages/Admin/Administrator/Administrator";
 
 const App = () => {
-  const currentUser = false;
+  const currentUser = true;
 
   const ProtectedRoute = ({ children }: any) => {
     if (!currentUser) {
@@ -38,8 +40,16 @@ const App = () => {
       ),
       children: [
         {
-          path: "dashboard",
+          path: "/app/dashboard",
           element: <Dashboard />,
+        },
+        {
+          path: "/app/settings",
+          element: <Settings />,
+        },
+        {
+          path: "/app/administrator",
+          element: <Administrator />,
         },
       ],
     },
