@@ -33,14 +33,14 @@ const Login: React.FC = () => {
           <CustomInput
             className="login"
             name="username"
-            onchange={handleChange}
+            onChange={handleChange}
             placeholder="Username"
             value={input.username}
           />
           <CustomInput
             className="login"
             name="password"
-            onchange={handleChange}
+            onChange={handleChange}
             placeholder="Password"
             value={input.password}
             type="password"

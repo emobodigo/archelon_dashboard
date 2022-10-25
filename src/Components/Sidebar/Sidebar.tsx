@@ -3,9 +3,15 @@ import { AiOutlineMenu } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { Link } from "react-router-dom";
 import BrandImage from "../../assets/images/gs-logo-half.png";
+import { ARCHELON_VERSION_TITLE, PROJECT_BUILD } from "../../config/config";
+import useUIStore from "../../Store/uiStore";
 import { SidebarList } from "./SidebarList";
 
 const Sidebar = () => {
+  const isMinimizeSidebar = useUIStore((state) => state.isMinimizeSidebar);
+  const toggleMinimizeSidebar = useUIStore(
+    (state) => state.toggleMinimizeSidebar
+  );
   return (
     <>
       <div className="ae-navbar">
@@ -20,8 +26,10 @@ const Sidebar = () => {
           <div className="ae-navbar-button">Log Out</div>
         </div>
       </div>
-      <div className="ae-sidebar-wrapper" id="mainSidebar">
-        <div className="ae-sidebar-header" id="desktopMenuTrigger">
+      <div
+        className={`ae-sidebar-wrapper ${isMinimizeSidebar ? "minimized" : ""}`}
+      >
+        <div className="ae-sidebar-header" onClick={toggleMinimizeSidebar}>
           <img src={BrandImage} alt="brand" className="brand-image" />
           <p>ARCHELON</p>
         </div>
@@ -37,6 +45,21 @@ const Sidebar = () => {
             </Link>
           ))}
         </ul>
+        <div className="ae-sidebar-footer">
+          <a
+            href="https://www.coralisstudio.com/tech"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <div
+              className="version-text ae-caption"
+              ae-caption={`Project Build: ${PROJECT_BUILD}`}
+            >
+              {ARCHELON_VERSION_TITLE} <br />
+              &copy; 2018 Coralis Studio
+            </div>
+          </a>
+        </div>
       </div>
     </>
   );
