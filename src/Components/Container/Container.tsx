@@ -20,7 +20,7 @@ const Container: React.FC<Props> = (props) => {
 
   let col;
   if (props.ratio) {
-    col = props.ratio ? `ratio-${props.ratio.r1}-${props.ratio.r2}` : "";
+    col = props.ratio ? ` ratio-${props.ratio.r1}-${props.ratio.r2}` : "";
     if (props.ratio?.r3) {
       col += `-${props.ratio.r3}`;
     }

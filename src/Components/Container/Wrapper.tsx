@@ -6,6 +6,7 @@ interface Props {
   columnSpan?: number;
   isEnforce?: boolean;
   className?: string;
+  style?: React.CSSProperties;
 }
 
 const Wrapper: React.FC<Props> = (props) => {
@@ -19,6 +20,7 @@ const Wrapper: React.FC<Props> = (props) => {
   return (
     <div
       className={`ae-grid-content${className}${scrollableHorizontal}${columnSpan}${isEnforce}`}
+      style={props.style}
     >
       {props.children}
     </div>

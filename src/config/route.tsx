@@ -16,6 +16,13 @@ const ProtectedRoute = ({ children }: any) => {
   return children;
 };
 
+const UnauthorizedRoute = ({ children }: any) => {
+  if (currentUser) {
+    return <Navigate to="/app" />;
+  }
+  return children;
+};
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -24,7 +31,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/admin",
-    element: <Login />,
+    element: (
+      <UnauthorizedRoute>
+        <Login />
+      </UnauthorizedRoute>
+    ),
   },
   {
     path: "/app",
@@ -35,7 +46,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "/app/dashboard",
+        path: "/app",
         element: <Dashboard />,
       },
       {

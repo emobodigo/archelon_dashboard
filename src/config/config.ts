@@ -12,3 +12,10 @@ export enum LabelSize {
     xl = "prime",
     md = "sub",
 }
+
+export enum ButtonType {
+    GOOD = "good",
+    BAD = "bad",
+    WARNING = "warning",
+    PRIMARY = "primary",
+}

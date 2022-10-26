@@ -12,6 +12,8 @@ interface UIState {
     },
     updateMessage: (text: string, status: MessageStatus) => void;
     clearMessageState: () => void;
+    isExpandedMobile: boolean;
+    toggleExpandedMobile: () => void;
 }
 
 const useUIStore = create<UIState>((set) => ({
@@ -24,7 +26,9 @@ const useUIStore = create<UIState>((set) => ({
         status: MessageStatus.Success
     },
     updateMessage: (text, status) => set(() => ({message: {text, status}})),
-    clearMessageState: () => set(() => ({showMessage: false, message: {text: '', status: MessageStatus.Success}}))
+    clearMessageState: () => set(() => ({showMessage: false, message: {text: '', status: MessageStatus.Success}})),
+    isExpandedMobile: false,
+    toggleExpandedMobile: () => set((state) => ({isExpandedMobile: !state.isExpandedMobile}))
 }))
 
 

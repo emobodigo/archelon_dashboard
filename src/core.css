@@ -160,7 +160,7 @@
 }
 
 a {
-  color: #000;
+  color: var(--color-button-text);
   text-decoration: none;
 }
 
@@ -862,9 +862,10 @@ body {
   color: var(--color-primary);
   border-bottom: solid 1px var(--color-primary);
 }
-.ae-dashboard-card li .gs-dashboard-list-value {
+.ae-dashboard-card li .ae-dashboard-list-value {
   text-align: right;
-  display: inline-block;
+  display: block;
+  float: right;
 }
 .ae-card .ae-text-input,
 .ae-modal-container .ae-text-input,
@@ -904,6 +905,7 @@ body {
   position: relative;
   -webkit-box-shadow: 5px 5px 5px var(--color-shadow);
   box-shadow: 5px 5px 5px var(--color-shadow);
+  margin-bottom: 10px;
 }
 .ae-card-button-container {
   position: absolute;
@@ -954,6 +956,211 @@ body {
 }
 .ae-card-button.close:hover {
   background-color: var(--color-bad);
+}
+.ae-buttonbar-container {
+  font-family: ae;
+  padding: 10px;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+.ae-buttonbar-container.right {
+  float: right;
+  text-align: right;
+}
+.ae-buttonbar-button {
+  font-size: 1.5rem;
+  color: var(--color-button-text);
+  border: solid 1px var(--color-button-border);
+  border-radius: 4px;
+  display: inline-block;
+  width: auto;
+  padding: 10px 10px 10px 5px;
+  margin: 0 5px 0 0;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.ae-buttonbar-button:hover {
+  background-color: var(--color-button-hover);
+  color: var(--color-button-text-hover);
+  text-decoration: none;
+}
+.ae-buttonbar-button:visited,
+.ae-buttonbar-button:active,
+.ae-buttonbar-button:focus {
+  text-decoration: none;
+  color: var(--color-button-text);
+}
+.ae-buttonbar-button.good {
+  background-color: var(--color-good);
+  border: solid 1px var(--color-good);
+}
+.ae-buttonbar-button.good:hover {
+  background-color: var(--color-good-hover);
+}
+.ae-buttonbar-button.bad {
+  background-color: var(--color-bad);
+  border: solid 1px var(--color-bad);
+}
+.ae-buttonbar-button.bad:hover {
+  background-color: var(--color-bad-hover);
+}
+.ae-buttonbar-button.warning {
+  background-color: var(--color-warning);
+  border: solid 1px var(--color-warning);
+}
+.ae-buttonbar-button.warning:hover {
+  background-color: var(--color-warning-hover);
+}
+.ae-buttonbar-button.primary {
+  background-color: var(--color-primary);
+  border: solid 1px var(--color-primary);
+}
+.ae-buttonbar-button.primary:hover {
+  background-color: var(--color-primary-hover);
+}
+.ae-buttonbar-button span,
+.ae-buttonbar-button i {
+  vertical-align: middle;
+}
+.ae-buttonbar-button .ae-icon {
+  width: 30px;
+  height: 30px;
+  background-size: 80%;
+  display: inline-grid;
+  align-items: center;
+  min-width: 0px;
+}
+.ae-buttonbar-button p {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+/*DEPRECATED WILL BE REMOVED COMPLETELY IN GEMSTONE 3.9.0*/
+
+.ae-button,
+.ae-popup-button {
+  font-size: 1.5rem;
+  color: var(--color-button-text);
+  border: solid 1px var(--color-button-border);
+  border-radius: 2px;
+  display: inline-block;
+  width: auto;
+  padding: 10px 10px 10px 5px;
+  margin: 10px 0;
+  cursor: pointer;
+  text-decoration: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.ae-buttonbar-container .ae-button {
+  margin: 0 5px 0 0;
+}
+.ae-popup-button-container .ae-popup-button {
+  margin: 0 10px 0 0;
+}
+.ae-button:hover,
+.ae-popup-button:hover {
+  background-color: var(--color-button-hover);
+  color: var(--color-button-text-hover);
+  text-decoration: none;
+}
+.ae-button:visited,
+.ae-button:active,
+.ae-button:focus,
+.ae-popup-button:visited,
+.ae-popup-button:active,
+.ae-popup-button:focus {
+  text-decoration: none;
+  color: var(--color-button-text);
+}
+.ae-button.good,
+.ae-popup-button.good {
+  background-color: var(--color-good);
+  border: solid 1px var(--color-good);
+}
+.ae-button.good:hover,
+.ae-popup-button.good:hover {
+  background-color: var(--color-good-hover);
+}
+.ae-button.bad,
+.ae-popup-button.bad {
+  background-color: var(--color-bad);
+  border: solid 1px var(--color-bad);
+}
+.ae-button.bad:hover,
+.ae-popup-button.bad:hover {
+  background-color: var(--color-bad-hover);
+}
+.ae-button.warning,
+.ae-popup-button.warning {
+  background-color: var(--color-warning);
+  border: solid 1px var(--color-warning);
+}
+.ae-button.warning:hover,
+.ae-popup-button.warning:hover {
+  background-color: var(--color-warning-hover);
+}
+.ae-button.primary,
+.ae-popup-button.primary {
+  background-color: var(--color-primary);
+  border: solid 1px var(--color-primary);
+}
+.ae-button.primary:hover,
+.ae-popup-button.primary:hover {
+  background-color: var(--color-primary-hover);
+}
+.ae-button span,
+.ae-button i,
+.ae-popup-button span,
+.ae-popup-button i {
+  vertical-align: middle;
+}
+.ae-button .ae-icon,
+.ae-popup-button .ae-icon {
+  width: 30px;
+  height: 30px;
+  background-size: 80%;
+  display: inline-grid;
+  align-items: center;
+  min-width: 0px;
+}
+.ae-button p,
+.ae-popup-button p {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+}
+.ae-prime-container {
+  position: relative;
+  min-height: calc(100vh - var(--size-navbar-height));
+}
+.ae-dashboard-value {
+  font-size: 3vw;
+  color: var(--color-text);
+  font-family: ae-bold;
+  margin: 0 0 10px;
+  -webkit-transition: 0.175s all ease;
+  -o-transition: 0.175s all ease;
+  transition: 0.175s all ease;
+}
+.ae-dashboard-value.primary {
+  color: var(--color-primary);
+}
+.ae-dashboard-value.good {
+  color: var(--color-good);
+}
+.ae-dashboard-value.warning {
+  color: var(--color-warning);
+}
+.ae-dashboard-value.bad {
+  color: var(--color-bad);
 }
 
 @-webkit-keyframes ae-crest-animation {
@@ -1123,6 +1330,10 @@ body {
     padding: 0;
     width: 100%;
     float: left;
+  }
+  .ae-buttonbar-container {
+    padding: 10px;
+    text-align: left;
   }
 }
 

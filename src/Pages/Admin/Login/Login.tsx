@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import "./login.css";
 import logo from "../../../assets/images/gs-logo-half.png";
 import CustomInput from "../../../Components/CustomInput/CustomInput";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     username: "",
     password: "",
@@ -20,6 +21,7 @@ const Login: React.FC = () => {
   const handleLogin = () => {
     // DO API to login
     //  Set CONTEXT API
+    navigate("/app");
   };
 
   return (
@@ -45,11 +47,9 @@ const Login: React.FC = () => {
             value={input.password}
             type="password"
           />
-          <Link to={"/app"}>
-            <div className="ae-login-button" onClick={handleLogin}>
-              Log in
-            </div>
-          </Link>
+          <div className="ae-login-button" onClick={handleLogin}>
+            Log in
+          </div>
         </div>
       </div>
     </div>

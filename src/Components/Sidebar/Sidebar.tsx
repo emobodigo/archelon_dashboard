@@ -8,15 +8,21 @@ import useUIStore from "../../Store/uiStore";
 import { SidebarList } from "./SidebarList";
 
 const Sidebar = () => {
-  const isMinimizeSidebar = useUIStore((state) => state.isMinimizeSidebar);
-  const toggleMinimizeSidebar = useUIStore(
-    (state) => state.toggleMinimizeSidebar
-  );
+  // const isMinimizeSidebar = useUIStore((state) => state.isMinimizeSidebar);
+  // const toggleMinimizeSidebar = useUIStore(
+  //   (state) => state.toggleMinimizeSidebar
+  // );
+  const {
+    isExpandedMobile,
+    toggleExpandedMobile,
+    toggleMinimizeSidebar,
+    isMinimizeSidebar,
+  } = useUIStore();
   return (
     <>
       <div className="ae-navbar">
-        <div className="ae-sidebar-trigger">
-          <AiOutlineMenu className="ae-icon" />
+        <div className="ae-sidebar-trigger" onClick={toggleExpandedMobile}>
+          <AiOutlineMenu style={{ height: 40, width: 40, marginTop: 4 }} />
         </div>
         <div className="ae-navbar-group right">
           <CgProfile className="ae-icon" />
@@ -27,7 +33,9 @@ const Sidebar = () => {
         </div>
       </div>
       <div
-        className={`ae-sidebar-wrapper ${isMinimizeSidebar ? "minimized" : ""}`}
+        className={`ae-sidebar-wrapper ${
+          isMinimizeSidebar ? "minimized" : ""
+        } ${isExpandedMobile ? "expanded" : ""}`}
       >
         <div className="ae-sidebar-header" onClick={toggleMinimizeSidebar}>
           <img src={BrandImage} alt="brand" className="brand-image" />
