@@ -27,9 +27,8 @@ const SystemSearch = () => {
       <Button
         onClick={handleSystemSearch}
         style={{ textAlign: "center", margin: 0 }}
-      >
-        Search
-      </Button>
+        label="Search"
+      />
     </>
   );
 };

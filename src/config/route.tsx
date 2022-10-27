@@ -1,5 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import Administrator from "../Pages/Admin/Administrator/Administrator";
+import AdministratorCreate from "../Pages/Admin/Administrator/AdministratorCreate";
 import Dashboard from "../Pages/Admin/Dashboard/Dashboard";
 import Layout from "../Pages/Admin/Layout/Layout";
 import Login from "../Pages/Admin/Login/Login";
@@ -53,9 +54,14 @@ const router = createBrowserRouter([
         path: "/app/settings",
         element: <Settings />,
       },
+      // Administrator
       {
         path: "/app/administrator",
         element: <Administrator />,
+      },
+      {
+        path: "/app/administrator/create",
+        element: <AdministratorCreate />,
       },
     ],
   },

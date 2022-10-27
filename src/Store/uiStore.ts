@@ -1,5 +1,5 @@
 import create from 'zustand';
-import { MessageStatus } from '../config/config';
+import { MessageStatus } from '../config/enum';
 
 interface UIState {
     isMinimizeSidebar: boolean;

@@ -21,7 +21,7 @@ const Login: React.FC = () => {
   const handleLogin = () => {
     // DO API to login
     //  Set CONTEXT API
-    navigate("/app");
+    navigate("/app", { replace: true });
   };
 
   return (

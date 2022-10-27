@@ -1,9 +1,11 @@
 import React from "react";
-import { ButtonType } from "../../config/config";
+import { IconType } from "react-icons";
+import { ButtonType } from "../../config/enum";
 
 interface IProps {
+  label: string;
+  icon?: IconType;
   onClick?: () => void;
-  children: JSX.Element | string;
   style?: React.CSSProperties;
   buttonClass?: ButtonType | string;
 }
@@ -16,7 +18,8 @@ const Button: React.FC<IProps> = (props) => {
       style={props.style}
       onClick={props.onClick}
     >
-      {props.children}
+      {props.icon && <props.icon className="ae-react-icon" />}
+      <p>{props.label}</p>
     </div>
   );
 };

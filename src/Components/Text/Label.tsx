@@ -1,5 +1,5 @@
 import React from "react";
-import { LabelSize } from "../../config/config";
+import { LabelSize } from "../../config/enum";
 
 interface IProps {
   style?: React.CSSProperties;

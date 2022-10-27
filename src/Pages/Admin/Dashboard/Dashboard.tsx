@@ -16,7 +16,7 @@ import Container from "../../../Components/Container/Container";
 import Wrapper from "../../../Components/Container/Wrapper";
 import SystemSearch from "../../../Components/SystemSearch/SystemSearch";
 import Label from "../../../Components/Text/Label";
-import { LabelSize } from "../../../config/config";
+import { LabelSize } from "../../../config/enum";
 
 const Dashboard: React.FC = () => {
   const data = [

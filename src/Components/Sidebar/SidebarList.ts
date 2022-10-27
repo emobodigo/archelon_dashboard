@@ -14,7 +14,7 @@ export const SidebarList: SidebarItem[] = [
     {
         title: 'Dashboard',
         icon: RiDashboardFill,
-        link: '/'
+        link: '/app'
     },
     {
         title: 'Admin',
