@@ -1,7 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import { ROW_PER_PAGE } from '../../config/config';
 import { FaCaretDown, FaCaretUp } from 'react-icons/fa';
 import { numberFormat } from '../../utils/UIUtils';
+import useUserStore from '../../Store/userStore';
+import { Else, If, Then } from 'react-if';
+import { ButtonType } from '../../config/enum';
+import { useNavigate } from 'react-router-dom';
+import TableButton from './TableButton';
 
 interface IHeader {
    label: string;
@@ -25,17 +31,20 @@ interface IBody {
 interface IActionData {
    navigationURI: string;
    permissionLevel?: number | 0;
+   buttonType?: ButtonType | string;
 }
 
 interface IActionDelete {
    apiURL: string;
    permissionLevel?: number | 0;
+   customModal?: JSX.Element | JSX.Element[];
 }
 
 interface IProps {
    body?: Array<IBody>;
-   api: string;
    header?: Array<IHeader>;
+   footer?: JSX.Element | JSX.Element[];
+   api: string;
    customHeader?: JSX.Element | JSX.Element[];
    customBody?: JSX.Element | JSX.Element[];
    customAction?: JSX.Element | JSX.Element[];
@@ -67,9 +76,13 @@ const Table: React.FC<IProps> = ({
    currentPage,
    rowPerPage,
    customBody,
-   totalRow
+   totalRow,
+   footer
 }) => {
+   const navigate = useNavigate();
    const [totalAction, setTotalAction] = useState(0);
+   const [isOpenModal, setIsOpenModal] = useState(false);
+   const { admin } = useUserStore();
    const itemPerPage = rowPerPage ? rowPerPage : ROW_PER_PAGE;
 
    useEffect(() => {
@@ -141,8 +154,100 @@ const Table: React.FC<IProps> = ({
                               {item.data.map((row) => (
                                  <td style={row.style}>{row.isNumber ? numberFormat(row.value) : row.value}</td>
                               ))}
-                              {customAction && customAction}
-                              {/* TODO show action based on clause */}
+                              <If condition={customAction !== undefined}>
+                                 <Then>{customAction}</Then>
+                                 <Else>
+                                    <If condition={hasDetailAction}>
+                                       <Then>
+                                          <If condition={detailActionData?.permissionLevel !== undefined}>
+                                             <Then>
+                                                <If condition={admin.admin_level >= detailActionData!.permissionLevel!}>
+                                                   <Then>
+                                                      <TableButton
+                                                         label="Detail"
+                                                         action={() =>
+                                                            navigate(`${detailActionData!.navigationURI}/${item.id}`)
+                                                         }
+                                                         buttonType={detailActionData?.buttonType}
+                                                      />
+                                                   </Then>
+                                                   <Else>
+                                                      <td></td>
+                                                   </Else>
+                                                </If>
+                                             </Then>
+                                             <Else>
+                                                <TableButton
+                                                   label="Detail"
+                                                   action={() =>
+                                                      navigate(`${detailActionData!.navigationURI}/${item.id}`)
+                                                   }
+                                                   buttonType={detailActionData?.buttonType}
+                                                />
+                                             </Else>
+                                          </If>
+                                       </Then>
+                                    </If>
+                                    <If condition={hasEditAction}>
+                                       <Then>
+                                          <If condition={editActionData?.permissionLevel !== undefined}>
+                                             <Then>
+                                                <If condition={admin.admin_level >= editActionData!.permissionLevel!}>
+                                                   <Then>
+                                                      <TableButton
+                                                         label="Edit"
+                                                         action={() =>
+                                                            navigate(`${detailActionData!.navigationURI}/${item.id}`)
+                                                         }
+                                                         buttonType={detailActionData?.buttonType}
+                                                      />
+                                                   </Then>
+                                                   <Else>
+                                                      <td></td>
+                                                   </Else>
+                                                </If>
+                                             </Then>
+                                             <Else>
+                                                <TableButton
+                                                   label="Edit"
+                                                   action={() =>
+                                                      navigate(`${detailActionData!.navigationURI}/${item.id}`)
+                                                   }
+                                                   buttonType={detailActionData?.buttonType}
+                                                />
+                                             </Else>
+                                          </If>
+                                       </Then>
+                                    </If>
+                                    <If condition={hasDeleteAction}>
+                                       <Then>
+                                          <If condition={deleteActionData?.permissionLevel !== undefined}>
+                                             <Then>
+                                                <If condition={admin.admin_level >= deleteActionData?.permissionLevel!}>
+                                                   <Then>
+                                                      <TableButton
+                                                         label="Delete"
+                                                         action={() => console.log('TODO Show Modal')}
+                                                         buttonType={ButtonType.BAD}
+                                                      />
+                                                   </Then>
+                                                   <Else>
+                                                      <td></td>
+                                                   </Else>
+                                                </If>
+                                             </Then>
+                                             <Else>
+                                                <TableButton
+                                                   label="Delete"
+                                                   action={() => console.log('Show Modal')}
+                                                   buttonType={ButtonType.BAD}
+                                                />
+                                             </Else>
+                                          </If>
+                                       </Then>
+                                    </If>
+                                 </Else>
+                              </If>
                            </tr>
                         );
                      })
