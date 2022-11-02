@@ -1173,6 +1173,178 @@ body {
    display: inline-block;
    vertical-align: middle;
    margin-left: 4px;
+   cursor: pointer;
+}
+.ae-table {
+   border: none !important;
+   font-family: ae;
+   min-width: 100%;
+   border-spacing: 0;
+   border-collapse: collapse;
+   font-family: ae;
+}
+.ae-table td::-moz-selection {
+   background-color: var(--color-table-selection);
+   color: var(--color-table-selection-text);
+}
+.ae-table td::selection {
+   background-color: var(--color-table-selection);
+   color: var(--color-table-selection-text);
+}
+.ae-table tr {
+   border: none !important;
+   color: var(--color-table-row-text);
+   padding: 10px;
+   background-color: var(--color-table-row);
+}
+.ae-table tr:nth-child(odd) {
+   background-color: var(--color-table-row);
+}
+.ae-table tr:nth-child(even) {
+   background-color: var(--color-table-row-alt);
+}
+.ae-table tr:hover {
+   background-color: var(--color-table-row-hover);
+}
+.ae-table.dense tr {
+   padding: 5px;
+}
+.ae-table td {
+   border: none !important;
+   padding: 10px;
+}
+.ae-table.dense td {
+   padding: 5px;
+}
+.ae-table td.empty-placeholder,
+.ae-table td.empty-row {
+   text-align: center;
+   color: var(--color-table-row-empty-text);
+   padding: 20px;
+}
+.ae-table th {
+   background-color: var(--color-table-header);
+   color: var(--color-table-header-text);
+   border: none !important;
+   padding: 10px;
+   font-family: ae;
+   text-align: left;
+   font-size: 1.5rem;
+}
+.ae-table.dense th {
+   padding: 5px;
+}
+.ae-table a,
+.ae-table a:active,
+.ae-table a:visited {
+   text-decoration: none;
+   color: var(--color-text);
+   border-bottom: solid 1px var(--color-text);
+}
+.ae-table a:hover {
+   color: #21dd21;
+}
+.ae-table-link {
+   cursor: pointer;
+}
+.ae-table-link:hover {
+   color: var(--color-table-link);
+}
+.ae-table-button {
+   background-color: var(--color-button);
+   color: var(--color-button-text);
+   text-align: center;
+   padding: 10px;
+   cursor: pointer;
+   border-radius: 2px;
+   min-width: 100px;
+}
+.ae-table-button:hover {
+   color: var(--color-button-text-hover);
+   background-color: var(--color-button-hover);
+}
+.ae-table-button.bad {
+   background-color: var(--color-bad);
+   border: solid 1px var(--color-bad);
+}
+.ae-table-button.bad:hover {
+   background-color: var(--color-bad-hover);
+}
+.ae-table-button.primary {
+   background-color: var(--color-primary);
+   border: solid 1px var(--color-primary);
+}
+.ae-table-button.primary:hover {
+   background-color: var(--color-primary-hover);
+}
+.ae-table-button.good {
+   background-color: var(--color-good);
+   border: solid 1px var(--color-good);
+}
+.ae-table-button.good:hover {
+   background-color: var(--color-good-hover);
+}
+.ae-table-button.warning {
+   background-color: var(--color-warning);
+   border: solid 1px var(--color-warning);
+}
+.ae-table-button.warning:hover {
+   background-color: var(--color-warning-hover);
+}
+.ae-table-button .ae-icon {
+   width: 30px;
+   height: 30px;
+   background-size: 80%;
+   vertical-align: middle;
+}
+.ae-table-button p {
+   font-family: ae-lite;
+   vertical-align: middle;
+   display: inline-block;
+   margin: 0 0 4px;
+}
+.ae-table tr.table-divider {
+   border-top: solid 2px var(--color-table-row-text) !important;
+}
+.ae-table-image {
+   max-width: 100px;
+}
+.ae-pagination {
+   color: var(--color-pagination-text);
+   font-family: ae;
+   font-size: 1.5rem;
+   margin: 10px 0 30px;
+}
+.ae-pagination-stat {
+   margin-top: 10px;
+}
+.ae-pagination-current {
+   display: inline-block;
+   font-family: ae-bold;
+   color: var(--color-pagination-text-active);
+   min-width: 25px;
+   width: auto;
+   min-height: 10px;
+   text-align: center;
+   padding: 2px 5px;
+   background-color: var(--color-pagination-active);
+   margin-right: 5px;
+}
+.ae-pagination-button {
+   display: inline-block;
+   font-family: ae-bold;
+   color: var(--color-pagination-text);
+   min-width: 25px;
+   width: auto;
+   min-height: 10px;
+   text-align: center;
+   padding: 2px 5px;
+   margin: 0 5px 5px 0;
+   cursor: pointer;
+   background-color: var(--color-pagination);
+}
+.ae-pagination-button:hover {
+   background-color: var(--color-pagination-active);
 }
 
 @-webkit-keyframes ae-crest-animation {
@@ -1345,6 +1517,9 @@ body {
    }
    .ae-buttonbar-container {
       padding: 10px;
+      text-align: left;
+   }
+   .ae-pagination {
       text-align: left;
    }
 }
@@ -1691,5 +1866,8 @@ body {
       top: auto;
       left: auto;
       right: auto;
+   }
+   .ae-table {
+      font-size: 1.4rem;
    }
 }
