@@ -914,12 +914,8 @@ body {
 .ae-card-button {
    width: 35px;
    height: 35px;
-   background-size: 80%;
-   background-position: center;
-   background-repeat: no-repeat;
-   display: inline-block;
-   background-color: transparent;
    margin: 0 5px;
+   padding-top: 4px;
    cursor: pointer;
 }
 .ae-card-button.fas {
@@ -1345,6 +1341,47 @@ body {
 }
 .ae-pagination-button:hover {
    background-color: var(--color-pagination-active);
+}
+.ae-popup-overlay {
+   background-color: var(--color-modal-overlay);
+   position: fixed;
+   width: 100%;
+   height: 100%;
+   z-index: 10000;
+   top: 0;
+   left: 0;
+}
+.ae-popup-container {
+   background-color: var(--color-modal);
+   width: 80%;
+   max-width: 600px;
+   margin: 100px auto;
+   font-family: ae;
+   padding: 25px;
+   border-radius: 5px;
+   color: var(--color-modal-text);
+   border: solid 1px var(--color-modal-border);
+}
+.ae-popup-title {
+   font-size: 3rem;
+}
+.ae-popup-title.plain {
+   color: var(--color-modal-text);
+}
+.ae-popup-title.success {
+   color: var(--color-good);
+}
+.ae-popup-title.error {
+   color: var(--color-bad);
+}
+.ae-popup-message {
+   font-size: 1.7rem;
+   margin: 30px 0;
+   min-height: 100px;
+}
+.ae-popup-button-container {
+   display: flex;
+   flex-direction: row-reverse;
 }
 
 @-webkit-keyframes ae-crest-animation {

@@ -7,7 +7,10 @@ import useUserStore from '../../Store/userStore';
 import { ButtonType } from '../../config/enum';
 import { useNavigate } from 'react-router-dom';
 import TableButton from './TableButton';
-import Button from '../Button/Button';
+import Alert from '../Alert/Alert';
+import { HiOutlineTrash } from 'react-icons/hi';
+import { BiEdit, BiDetail } from 'react-icons/bi';
+import CardButton from '../Button/CardButton';
 
 interface IHeader {
    label: string;
@@ -87,7 +90,8 @@ const Table: React.FC<IProps> = ({
    const [startIndex, setStartIndex] = useState(0);
    const [lastPage, setLastPage] = useState(1);
    const [lastIndex, setLastIndex] = useState(1);
-   const [isOpenModal, setIsOpenModal] = useState(false);
+   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+   const [selectedId, setSelectedId] = useState<number | string>(0);
    const { admin } = useUserStore();
    const itemPerPage = rowPerPage ? rowPerPage : ROW_PER_PAGE;
    const totalCountData = totalRow ? totalRow : 0;
@@ -160,6 +164,15 @@ const Table: React.FC<IProps> = ({
          }
       }
       return elements;
+   };
+
+   const showModal = (id: number | string) => {
+      setSelectedId(id);
+      setIsOpenDeleteModal(true);
+   };
+
+   const deleteRow = () => {
+      // TODO api and query with deleteActionData?.apiURL
    };
 
    const renderPaginationLateList = () => {
@@ -236,7 +249,17 @@ const Table: React.FC<IProps> = ({
                                     <>
                                        {hasDetailAction &&
                                           (detailActionData?.permissionLevel ? (
-                                             admin.admin_level >= detailActionData.permissionLevel && (
+                                             admin.admin_level >= detailActionData.permissionLevel &&
+                                             (simplifiedAction ? (
+                                                <CardButton
+                                                   Icon={BiDetail}
+                                                   caption="Detail"
+                                                   onClick={() =>
+                                                      navigate(`${detailActionData.navigationURI}/${item.id}`)
+                                                   }
+                                                   type={ButtonType.PRIMARY}
+                                                />
+                                             ) : (
                                                 <TableButton
                                                    label="Detail"
                                                    action={() =>
@@ -244,7 +267,16 @@ const Table: React.FC<IProps> = ({
                                                    }
                                                    buttonType={detailActionData?.buttonType}
                                                 />
-                                             )
+                                             ))
+                                          ) : simplifiedAction ? (
+                                             <CardButton
+                                                Icon={BiDetail}
+                                                caption="Detail"
+                                                onClick={() =>
+                                                   navigate(`${detailActionData?.navigationURI}/${item.id}`)
+                                                }
+                                                type={ButtonType.PRIMARY}
+                                             />
                                           ) : (
                                              <TableButton
                                                 label="Detail"
@@ -254,7 +286,17 @@ const Table: React.FC<IProps> = ({
                                           ))}
                                        {hasEditAction &&
                                           (editActionData?.permissionLevel ? (
-                                             admin.admin_level >= editActionData.permissionLevel && (
+                                             admin.admin_level >= editActionData.permissionLevel &&
+                                             (simplifiedAction ? (
+                                                <CardButton
+                                                   Icon={BiEdit}
+                                                   caption="Edit"
+                                                   onClick={() =>
+                                                      navigate(`${editActionData?.navigationURI}/${item.id}`)
+                                                   }
+                                                   type={ButtonType.GOOD}
+                                                />
+                                             ) : (
                                                 <TableButton
                                                    label="Edit"
                                                    action={() =>
@@ -262,7 +304,14 @@ const Table: React.FC<IProps> = ({
                                                    }
                                                    buttonType={editActionData?.buttonType}
                                                 />
-                                             )
+                                             ))
+                                          ) : simplifiedAction ? (
+                                             <CardButton
+                                                Icon={BiEdit}
+                                                caption="Edit"
+                                                onClick={() => navigate(`${editActionData?.navigationURI}/${item.id}`)}
+                                                type={ButtonType.GOOD}
+                                             />
                                           ) : (
                                              <TableButton
                                                 label="Edit"
@@ -272,17 +321,32 @@ const Table: React.FC<IProps> = ({
                                           ))}
                                        {hasDeleteAction &&
                                           (deleteActionData?.permissionLevel ? (
-                                             admin.admin_level >= deleteActionData.permissionLevel && (
+                                             admin.admin_level >= deleteActionData.permissionLevel &&
+                                             (simplifiedAction ? (
+                                                <CardButton
+                                                   Icon={HiOutlineTrash}
+                                                   caption="Delete"
+                                                   onClick={() => showModal(item.id)}
+                                                   type={ButtonType.BAD}
+                                                />
+                                             ) : (
                                                 <TableButton
                                                    label="Delete"
-                                                   action={() => console.log('TODO Show Modal')}
+                                                   action={() => showModal(item.id)}
                                                    buttonType={ButtonType.BAD}
                                                 />
-                                             )
+                                             ))
+                                          ) : simplifiedAction ? (
+                                             <CardButton
+                                                Icon={HiOutlineTrash}
+                                                caption="Delete"
+                                                onClick={() => showModal(item.id)}
+                                                type={ButtonType.BAD}
+                                             />
                                           ) : (
                                              <TableButton
                                                 label="Delete"
-                                                action={() => console.log('TODO Show Modal')}
+                                                action={() => showModal(item.id)}
                                                 buttonType={ButtonType.BAD}
                                              />
                                           ))}
@@ -329,6 +393,21 @@ const Table: React.FC<IProps> = ({
                </div>
             )}
          </div>
+         {isOpenDeleteModal && (
+            <Alert
+               alertStateSetter={setIsOpenDeleteModal}
+               message="Are you sure to delete this item?"
+               title="Delete"
+               actions={[
+                  {
+                     label: 'Delete',
+                     action: deleteRow,
+                     icon: HiOutlineTrash,
+                     type: ButtonType.BAD
+                  }
+               ]}
+            />
+         )}
       </>
    );
 };

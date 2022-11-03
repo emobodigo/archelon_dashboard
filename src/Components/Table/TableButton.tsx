@@ -3,7 +3,7 @@ import { ButtonType } from '../../config/enum';
 
 interface ITableButton {
    buttonType?: ButtonType | string;
-   action: () => void;
+   action: (id?: any) => void;
    label: string;
 }
 
